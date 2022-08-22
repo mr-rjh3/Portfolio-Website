@@ -1,0 +1,81 @@
+canvas{
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+main {
+    
+    position: absolute;
+    color: white;
+    padding: 390px 50px 50px 50px;
+    margin: 0px auto;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr); /* creates columns to align all text with to make things consistent and well spaced*/
+    font-family: Helvetica, sans-serif;
+}
+
+:root{
+    --dark-bg: rgba(15, 15, 15, 0.70);
+    --light-bg: rgba(255, 255, 255, 0.863);
+    --spacing: 350px;
+
+    
+
+}
+section{
+    grid-column: 1 / 7; /* aligns text to specific grid boxes. in this case text will go from grid 2 - 8 before starting new line */
+    font-size: 1.5rem;
+    padding: 1rem;
+    background: var(--dark-bg);
+    margin-bottom: var(--spacing);
+
+}
+header{
+    grid-column: 2 / span 5;
+    background-color: var(--dark-bg);
+    width: 77%;
+    text-align: center;
+    font-size: 2.5rem; /* font size for header (rem stands for root em which is basically the root font size in most cases this is 16px. so in this case the font size will be 2.5 * 16)*/
+    padding: 2rem; /* sets the thickness of the padding area */
+    margin-bottom: var(--spacing);
+}
+blockquote {
+    margin: 0;
+    padding: 1rem;
+    grid-column: 1 / span 9;
+    margin-bottom: var(--spacing);
+    
+  }
+    blockquote p {
+        display: inline;
+        font-size: 2.3rem;
+        font-style: italic;
+        color: black;
+        background-color: var(--light-bg);
+    }
+.left { /* if the class is "left" then display text on the left of the screen */
+    margin-right: 35px;
+    grid-column: 7 / 13;
+    }
+.last { /* if the class is "last" then remove the bottom spacing */
+    margin-bottom: 50px;
+    }
+#topButton{
+    display: none;
+    position: fixed; /* Fixed/sticky position */
+    bottom: 20px; /* Place the button at the bottom of the page */
+    right: 30px; /* Place the button 30px from the right */
+    z-index: 99; /* Make sure it does not overlap */
+    border: none; /* Remove borders */
+    outline: none; /* Remove outline */
+    background-color: rgb(130, 130, 130); /* Set a background color */
+    color: rgb(0, 0, 0); /* Text color */
+    cursor: pointer; /* Add a mouse pointer on hover */
+    padding: 15px; /* Some padding */
+    border-radius: 10px; /* Rounded corners */
+    font-size: 18px; /* Increase font size */
+}
+#topButton:hover {
+    background-color: rgb(85,85,85); /* Add a dark-grey background on hover */
+  }
