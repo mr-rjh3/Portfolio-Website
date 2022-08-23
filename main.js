@@ -23,7 +23,7 @@ const renderer = new THREE.WebGL1Renderer({
 renderer.setPixelRatio(window.devicePixelRatio); // Sets the renderer pixel ratio to the current device's pixel ratio
 renderer.setSize(window.innerWidth, window.innerHeight);
 
-const controls = new OrbitControls(camera, renderer.domElement)
+// const controls = new OrbitControls(camera, renderer.domElement)
 // camera.position.setZ(0.7);
 
 const moonGeometry = new THREE.SphereGeometry(1); // create some torus geometry (ring looking thing)
@@ -65,8 +65,7 @@ scene.add(jupiter);
 
 const saturnGeometry = new THREE.SphereGeometry(2) // create some geometry
 const saturnTexture = new THREE.TextureLoader().load(saturnImg); // Loads the texture from the given path
-const saturnNormalTexture = new THREE.TextureLoader().load(saturnNormalImg);
-const saturnMaterial = new THREE.MeshStandardMaterial({map: saturnTexture, normalMap: saturnNormalTexture}); // Create a material for the geometry to use. Takes color and if wireframe is set to true then you can see the poligonal structure of the shape
+const saturnMaterial = new THREE.MeshStandardMaterial({map: saturnTexture}); // Create a material for the geometry to use. Takes color and if wireframe is set to true then you can see the poligonal structure of the shape
 const saturn = new THREE.Mesh(saturnGeometry, saturnMaterial); // combines the material and the geometry
 saturn.position.set(4,-9,55);
 saturn.rotation.x = Math.PI / 2;
@@ -105,7 +104,7 @@ const starGeometry = new THREE.SphereGeometry(0.2, 24, 24);
 const starMaterial = new THREE.MeshStandardMaterial({color: 0xffffff});
 function addStar() {
     const star = new THREE.Mesh(starGeometry, starMaterial);
-    const [x, y, z] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread(200)); // fills array with random floats in the range of -100 to 100
+    const [x, y, z] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread(300)); // fills array with random floats in the range of -100 to 100
     star.position.set(x,y,z);
     scene.add(star);
 }
@@ -121,19 +120,28 @@ function topFunction() {
     if (window.scrollY != 0) {
         setTimeout(function () {
           window.scrollTo(0, window.scrollY - 100);
+          document.body.scrollTo(0, document.body.scrollY - 100)
           topFunction();
         }, 10);
   }
 }
 
-topButton.onclick = topFunction;
+
 
 function moveCameraOnScroll(){
     const t = document.body.getBoundingClientRect().top; // get the distance from the top of the webpage
-    if(t < -700) // if the distance is greater than 0 then scroll down
-        topButton.style.display = "block";
-    else
-        topButton.style.display = "none";
+    if(t < -300){ // if far enough from the top display the top button
+        // fade the topButton in
+        topButton.style.opacity = 1;
+        topButton.onclick = topFunction;
+        topButton.style.cursor = "pointer";
+    }
+    else{
+        // fade the topButton out and stop it from being clicked
+        topButton.style.opacity = 0;
+        topButton.onclick = null;
+        topButton.style.cursor = "default";
+    }
     // moves and rotates the camera based on the distance from the top of the webpage
 
     camera.position.x = t * -0.0002;
