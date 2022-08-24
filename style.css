@@ -1,14 +1,22 @@
 canvas{
+    image-rendering: crisp-edges;
     position: fixed;
     top: 0;
     left: 0;
+}
+html{
+    scroll-behavior: smooth;
+}
+
+body{
+    overflow: overlay;
 }
 
 main {
     
     position: absolute;
     color: white;
-    padding: 390px 50px 50px 50px;
+    padding: 380px 50px 50px 50px;
     margin: 0px auto;
     display: grid;
     grid-template-columns: repeat(12, 1fr); /* creates columns to align all text with to make things consistent and well spaced*/
@@ -20,8 +28,8 @@ img{
 }
 
 :root{
-    --dark-bg: rgba(15, 15, 15, 0.70);
-    --light-bg: rgba(255, 255, 255, 0.9);
+    --dark-bg: rgba(15, 15, 15, 0.80);
+    --light-bg: rgba(255, 255, 255, 0.80);
     --spacing: 350px;
 
     
@@ -33,6 +41,7 @@ section{
     padding: 1rem;
     background: var(--dark-bg);
     margin-bottom: var(--spacing);
+    border-radius: 50px; /* Rounded corners */
 
 }
     section h2{
@@ -43,6 +52,11 @@ section{
         font-size: 1.5rem;
         font-family: Tahoma, Verdana, sans-serif;
     }
+    section h3 img{
+        width: 20px;
+        height: auto;
+        padding-left: 10px;
+    }
 header{
     grid-column: 2 / span 5;
     background-color: var(--dark-bg);
@@ -52,6 +66,7 @@ header{
     font-family: Tahoma, Verdana, sans-serif;
     padding: 2rem; /* sets the thickness of the padding area */
     margin-bottom: var(--spacing);
+    border-radius: 50px; /* Rounded corners */
 }
 
 blockquote {
@@ -59,6 +74,7 @@ blockquote {
     padding: 1rem;
     grid-column: 1 / span 9;
     margin-bottom: var(--spacing);
+    
     
   }
     blockquote p {
@@ -68,41 +84,69 @@ blockquote {
         
         color: black;
         background-color: var(--light-bg);
+        border-radius: 5px; /* Rounded corners */
     }
+a{
+    color: white;
+    text-decoration: underline;
+}
 .left { /* if the class is "left" then display text on the left of the screen */
+    
     margin-right: 35px;
     grid-column: 7 / 13;
     }
 .last { /* if the class is "last" then remove the bottom spacing */
-    margin-bottom: 50px;
+    margin-bottom: 70px;
     }
+.link{
+    transition: all .1s ease-out;
+}
+.link:hover{ /* if the class is "link" then display text in a link */
+    cursor: pointer;
+    font-size: 101%;
+    color: rgb(131, 131, 131);
+    transition: all .1s ease-in;
+    /* text-decoration: underline; */
+}
+.sectionLink{
+    text-decoration: none;
+    transition: all .1s ease-out;
+}
+.sectionLink:hover{ /* if the class is "link" then display text in a link */
+    cursor: pointer;
+    font-size: 101%;
+    color: rgb(131, 131, 131);
+    transition: all .1s ease-in;
+    /* text-decoration: underline; */
+}
 #topButton{
     display: block; /* hides the button initially */
     position: fixed; /* Fixed position */
     bottom: 20px; /* Place the button at the bottom of the page */
-    right: 20px; /* move button slightly right */
+    right: 22px; /* move button slightly right */
     z-index: 99; /* Make sure it is not covered by other parts of the page */
     border: none; /* Remove borders */
     outline: none; /* Remove outline */
     background-color: rgb(230, 230, 230); /* Set a background color */
+    /* opacity: 0; */
+    transform: scale(0); /* Make the button invisible */
     color: rgb(0, 0, 0); /* Text color */
     cursor: pointer; /* makes curser point when hovering */
     padding: 15px; /*Some padding */
     padding-top: 12px;
     border-radius: 40px; /* Rounded corners */
-    font-size: 18px; /* Font size */
-    transition:all .3s  ease-out; /* Add a transition effect for when any of the button values change */
+    font-size: 20px; /* Font size */
+    transition:all .2s ease-out; /* Add a transition effect for when any of the button values change */
 }
 #topButton:hover {
     background-color: rgb(202, 140, 140); /* Add a new background color on hover */
-    transform: scale(1.05) rotate(360deg);
-    transition:all .3s ease-in;
+    transition:all .2s ease-in;
   }
 #githubButton {
     display: block; /* hides the button initially */
     position: fixed; /* Fixed position */
     top: 10px; /* Place the button at the bottom of the page */
-    right: 20px; /* move button slightly right */
+    right: 22px; /* move button slightly right */
     z-index: 99; /* Make sure it is not covered by other parts of the page */
     border: none; /* Remove borders */
     outline: none; /* Remove outline */
@@ -126,7 +170,7 @@ blockquote {
     display: block; /* hides the button initially */
     position: fixed; /* Fixed position */
     top: 70px; /* Place the button at the bottom of the page */
-    right: 20px; /* move button slightly right */
+    right: 22px; /* move button slightly right */
     z-index: 99; /* Make sure it is not covered by other parts of the page */
     border: none; /* Remove borders */
     outline: none; /* Remove outline */
@@ -146,3 +190,24 @@ blockquote {
     transform: scale(1.05);
     transition:background-color .2s, transform .2s ease-in;
   }
+/* width */
+::-webkit-scrollbar {
+  width: 9px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgba(30, 30, 30, 0.7);
+  border-radius: 5px; /* Rounded corners */
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(136,136,136); /* Set a background color */
+  border-radius: 10px; /* Rounded corners */
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(85,85,85); /* Add a hover effect */
+}
